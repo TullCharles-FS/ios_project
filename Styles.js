@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {Platform, StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,8 +12,23 @@ const styles = StyleSheet.create({
   largeHeading: {
     fontSize: 40,
   },
+
   italicFont: {
     fontSize: "italic",
+  },
+
+  headingColor: {
+    ...Platform.select({
+      android: {
+        color: "blue",
+      },
+      ios: {
+        color: "red",
+      },
+      default: {
+        color: "green",
+      },
+    }),
   },
 });
 

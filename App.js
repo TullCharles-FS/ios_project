@@ -8,6 +8,7 @@ import {
   Button,
   Platform,
 } from "react-native";
+import * as Network from "expo-network";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Headings from "./components/Headings";
@@ -24,12 +25,16 @@ function HomeScreen({navigation}) {
   //.then((data) => console.log({data}));
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  Network.getNetworkStateAsync().then((data) => {
+    console.log({data});
+  });
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.largeHeading}>Home Page</Text>
       <Headings>Welcome To My App!</Headings>
       {Platform.OS === "ios" ? (
-        <Text style={styles.largeHeading}>Charles App!</Text>
+        <Text style={styles.headingColor}>Charles App!</Text>
       ) : (
         <Text style={styles.largeHeading}>Error</Text>
       )}
